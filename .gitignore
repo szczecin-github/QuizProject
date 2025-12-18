@@ -1,0 +1,9 @@
+# Ignore compiled Java classes
+*.class
+
+# Ignore external libraries (you don't usually commit these)
+*.jar
+
+# Ignore standard system files
+.DS_Store
+Thumbs.db
