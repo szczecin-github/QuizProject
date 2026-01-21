@@ -27,6 +27,17 @@
                     <form action="/add" method="post">
                         
                         <div class="mb-3">
+                            <label class="form-label fw-bold">Add to which Quiz?</label>
+                            <select name="quizId" class="form-select">
+                                <option th:each="q : ${quizzes}" 
+                                        th:value="${q.id}" 
+                                        th:text="${q.title}">
+                                    History Trivia
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label fw-bold">Type</label>
                             <select name="type" class="form-select" id="typeSelector" onchange="toggleFields()">
                                 <option value="TEXT">Text Question</option>
@@ -65,7 +76,6 @@
             let helpText = document.getElementById("answerHelp");
 
             if (type === "CHOICE") {
-                // JS 'style.display' overrides CSS classes, so this works fine with the 'hidden' class
                 optionsGroup.style.display = "block";
                 helpText.innerText = "Type the number of the correct option (e.g., 1, 2, or 3)";
             } else {
