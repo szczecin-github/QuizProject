@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-patch-question-fill"></i> QuizProject
+            </a>
+        </div>
+    </nav>
+
+    <div class="container page-container with-margin-bottom">
+        <div class="row justify-content-center">
+            <div class="col-md-8 fade-in-up">
+                
+                <div class="card text-center mb-4">
+                    <div class="card-body">
+                        <i class="bi bi-trophy-fill text-warning icon-trophy"></i>
+                        <h2 class="mt-3 fw-bold text-primary-blue">Quiz Complete!</h2>
+                        <h1 class="display-3 fw-bold my-3">
+                            <span th:text="${score}" class="text-success">0</span>
+                            <span class="text-muted text-separator">/ <span th:text="${total}">0</span></span>
+                        </h1>
+                        
+                        <div class="d-flex justify-content-center gap-2 mt-4">
+                            <a href="/select" class="btn btn-primary"><i class="bi bi-arrow-repeat"></i> Try Again</a>
+                            <a href="/" class="btn btn-outline-secondary"><i class="bi bi-house-door"></i> Home</a>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="mb-3 text-muted"><i class="bi bi-journal-check"></i> Detailed Review</h4>
+                
+                <div class="card p-0 overflow-hidden">
+                    <div th:each="item : ${results}" class="p-4 border-bottom">
+                        
+                        <h5 class="fw-bold mb-3 text-primary-blue">
+                            <i th:if="${item.isCorrect}" class="bi bi-check-circle-fill text-success me-2"></i>
+                            <i th:if="${!item.isCorrect}" class="bi bi-x-circle-fill text-danger me-2"></i>
+                            <span th:text="${item.prompt}">Question Text</span>
+                        </h5>
+
+                        <div th:if="${item.options != null}">
+                            <div th:each="opt, stat : ${item.options}" 
+                                 class="review-option"
+                                 th:classappend="${stat.count.toString() == item.correctAnswer} ? 'correct-answer' : 
+                                                 (${stat.count.toString() == item.userAnswer && !item.isCorrect} ? 'wrong-choice' : 'neutral')">
+                                
+                                <i th:if="${stat.count.toString() == item.correctAnswer}" class="bi bi-check-lg me-2"></i>
+                                <i th:if="${stat.count.toString() == item.userAnswer && !item.isCorrect}" class="bi bi-x-lg me-2"></i>
+                                <span class="me-2 fw-bold" th:text="${stat.count} + '.'"></span>
+                                <span th:text="${opt}">Option Text</span>
+                            </div>
+                        </div>
+
+                        <div th:if="${item.options == null}" class="row">
+                            <div class="col-md-6">
+                                <small class="text-muted text-uppercase fw-bold">Your Answer</small>
+                                <div class="p-2 rounded mt-1 border" 
+                                     th:classappend="${item.isCorrect} ? 'bg-white border-success text-success' : 'bg-white border-danger text-danger fw-bold'">
+                                    <span th:text="${item.userAnswer}">User Input</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6" th:if="${!item.isCorrect}">
+                                <small class="text-muted text-uppercase fw-bold">Correct Answer</small>
+                                <div class="p-2 rounded mt-1 bg-white border border-success text-success fw-bold">
+                                    <span th:text="${item.correctAnswer}">Correct Answer</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

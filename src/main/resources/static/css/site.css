@@ -1,0 +1,226 @@
+
+:root {
+    --bg-color: #E0F7FA;          /* SnowCyan */
+    --primary-blue: #007bb5;      /* Deep Blue */
+    --accent-blue: #4fc3f7;       /* Lighter Sky Blue */
+    --text-dark: #2c3e50;
+    --card-bg: rgba(255, 255, 255, 0.95);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-image: radial-gradient(#4fc3f7 2px, transparent 2px);
+    background-size: 30px 30px; 
+    
+    min-height: 100vh;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    background: white !important;
+    border-bottom: 2px solid var(--accent-blue);
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+    color: var(--primary-blue) !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* --- CARDS --- */
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 10px 15px rgba(0,0,0,0.03);
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+}
+
+/* --- QUESTION NAVIGATION --- */
+.question-nav {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.nav-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--accent-blue);
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-dot:hover {
+    background: #e1f5fe;
+}
+
+.nav-dot.active {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 123, 181, 0.3);
+}
+
+/* --- QUESTION STEPS --- */
+.question-step {
+    display: none; /* Hidden by default */
+    animation: fadeIn 0.4s ease-out;
+}
+.question-step.active {
+    display: block; /* Show only active */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- INPUTS & BUTTONS --- */
+.btn-primary {
+    background-color: var(--primary-blue);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #005f8d;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+input[type="text"]:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+}
+
+/* --- MILLIONAIRE BUTTONS  --- */
+.btn-millionaire {
+    /* Light Blue Gradient */
+    background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+    border: 2px solid #81d4fa;
+    color: var(--primary-blue);
+    padding: 15px 20px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    transition: all 0.2s;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.btn-millionaire:hover {
+    transform: scale(1.02);
+    background: #e1f5fe;
+    border-color: var(--primary-blue);
+}
+
+/* Selected State (Dark Blue) */
+.btn-millionaire.selected {
+    /* Deep Blue Gradient */
+    background: linear-gradient(135deg, #0288d1 0%, #01579b 100%);
+    border-color: #01579b;
+    color: white;
+    box-shadow: 0 0 15px rgba(1, 87, 155, 0.4);
+    transform: scale(1.02);
+}
+
+.btn-millionaire.selected .letter-badge {
+    color: #81d4fa; /* Light blue badge on dark background */
+}
+
+.letter-badge {
+    color: var(--primary-blue);
+    font-weight: 900;
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+/* --- REVIEW MODE STYLES --- */
+.review-option {
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #eee;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+/* Grayed out (Neutral) */
+.review-option.neutral {
+    background-color: #f8f9fa;
+    color: #999;
+    opacity: 0.7;
+}
+
+/* Correct Answer (Green) */
+.review-option.correct-answer {
+    background-color: #ffebee;
+    border-color: #198754;
+    color: #198754;
+    font-weight: 700;
+}
+
+/* Wrong Choice (Red) */
+.review-option.wrong-choice {
+    background-color: #ffebee;
+    border-color: #e57373;
+    color: #c62828;
+}
+
+.page-container {
+    margin-top: 100px;
+}
+
+.page-container.with-margin-bottom {
+    margin-bottom: 50px;
+}
+
+.text-primary-blue {
+    color: var(--primary-blue) !important;
+}
+
+.icon-large {
+    font-size: 3rem;
+}
+
+.icon-trophy {
+    font-size: 4rem;
+}
+
+.text-separator {
+    font-size: 2rem;
+}
+
+.hidden {
+    display: none;
+}
