@@ -1,0 +1,18 @@
+# Maven - Ignore the build directory
+target/
+*.log
+
+# IDE files (Optional, but good practice)
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS system files
+.DS_Store
+Thumbs.db
+
+# Ignore local runtime data (optional, if you don't want to commit the DB file)
+# quiz_data.json

@@ -1,0 +1,14 @@
+{
+  "questions": [
+    {
+      "type": "TEXT",
+      "prompt": "What is the capital of France?",
+      "correctAnswer": "Paris"
+    },
+    {
+      "type": "MULTIPLE_CHOICE",
+      "prompt": "Which is the largest planet? 1.Earth 2.Mars 3.Jupiter (Enter index)",
+      "correctAnswer": 3
+    }
+  ]
+}
