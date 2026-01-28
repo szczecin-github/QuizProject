@@ -15,11 +15,10 @@ public class Main {
         return (args) -> {
             System.out.println("--- Starting Concurrent Data Load ---");
 
-            // 1. Trigger both loads in parallel
             CompletableFuture<Quiz> task1 = initializer.loadHistoryQuiz();
             CompletableFuture<Quiz> task2 = initializer.loadSpaceQuiz();
 
-            // 2. Wait for both and save
+            // Wait for both tasks and save
             CompletableFuture.allOf(task1, task2).join();
             
             quizRepository.save(task1.get());

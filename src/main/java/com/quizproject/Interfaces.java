@@ -13,7 +13,7 @@ interface IQuestion<T> {
 interface IQuiz {
     void addQuestion(IQuestion<?> question);
     void start();
-    java.util.List<IQuestion<?>> getQuestions(); // Added for storage access
+    java.util.List<IQuestion<?>> getQuestions();
 }
 
 interface IQuizStorage {

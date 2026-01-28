@@ -12,9 +12,8 @@ class Quiz {
 
     private String title;
     private String description;
-    private String icon; // e.g., "bi-globe" for history
+    private String icon;
 
-    // One Quiz has Many Questions
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<BaseQuestion> questions = new ArrayList<>();
 
@@ -58,7 +57,7 @@ abstract class BaseQuestion implements IQuestion<Object> {
         this.correctAnswer = correctAnswer;
     }
 
-    public void setQuiz(Quiz quiz) { this.quiz = quiz; } // Setter
+    public void setQuiz(Quiz quiz) { this.quiz = quiz; }
     
     public String getPrompt() { return prompt; }
     public String getCorrectAnswerString() { return correctAnswer; }

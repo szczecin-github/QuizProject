@@ -34,65 +34,51 @@ public class QuizController {
         model.addAttribute("questions", quiz.getQuestions());
         return "quiz";
     }
-    // --- Create Quiz ---
+    // --- Create Quiz & Save the New Quiz---
     @GetMapping("/create-quiz")
     public String showCreateQuizForm() {
         return "create_quiz";
     }
-
-    // --- Save the New Quiz ---
     @PostMapping("/create-quiz")
     public String createQuiz(@RequestParam String title,
                              @RequestParam String description,
                              @RequestParam String icon) {
         
-        // Create and save the new Quiz
         Quiz newQuiz = new Quiz(title, description, icon);
         quizRepository.save(newQuiz);
-
-        // Redirect to the "Add Question" page so they can immediately fill it!
-        // We pass the new ID so the dropdown defaults to this quiz (optional improvement)
         return "redirect:/add"; 
     }
-    // --- Add Question Page ---
+
     @GetMapping("/add")
     public String showAddQuestionForm(Model model) {
-        // Pass all quizzes so the user can choose which one to add to
         model.addAttribute("quizzes", quizRepository.findAll());
         return "add_question";
     }
 
-    // --- Saving the Question ---
     @PostMapping("/add")
     public String addQuestion(
-            @RequestParam Long quizId, // The user selects the quiz
+            @RequestParam Long quizId,
             @RequestParam String type,
             @RequestParam String prompt,
             @RequestParam String correctAnswer,
             @RequestParam(required = false) String optionsStr) {
 
-        // 1. Find the selected Quiz
         Quiz quiz = quizRepository.findById(quizId).orElse(null);
         if (quiz == null) return "redirect:/add";
 
-        // 2. Create the question object
         BaseQuestion newQuestion;
         if ("CHOICE".equals(type)) {
-            // Convert string "A, B, C" to List
+
             List<String> options = List.of(optionsStr.split("\\s*,\\s*"));
-            // Correct answer is the index (1, 2, 3)
             int correctIndex = Integer.parseInt(correctAnswer);
             newQuestion = new MultipleChoiceQuestion(prompt, correctIndex, options);
         } else {
-            // Text Question
             newQuestion = new TextQuestion(prompt, correctAnswer);
         }
 
-        // 3. Link question to the quiz and save
         quiz.addQuestion(newQuestion);
         questionRepository.save(newQuestion); // Saves to DB
-
-        // 4. Redirect to the quiz so you can see your new question immediately!
+        
         return "redirect:/take/" + quizId;
     }
 

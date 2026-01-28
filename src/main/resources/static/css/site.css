@@ -1,8 +1,8 @@
 
 :root {
-    --bg-color: #E0F7FA;          /* SnowCyan */
-    --primary-blue: #007bb5;      /* Deep Blue */
-    --accent-blue: #4fc3f7;       /* Lighter Sky Blue */
+    --bg-color: #E0F7FA;
+    --primary-blue: #007bb5;
+    --accent-blue: #4fc3f7;
     --text-dark: #2c3e50;
     --card-bg: rgba(255, 255, 255, 0.95);
 }
@@ -31,7 +31,6 @@ body {
     font-size: 1.5rem;
 }
 
-/* --- CARDS --- */
 .card {
     background: var(--card-bg);
     border: 1px solid rgba(255,255,255,0.6);
@@ -42,7 +41,6 @@ body {
     padding: 2rem;
 }
 
-/* --- QUESTION NAVIGATION --- */
 .question-nav {
     display: flex;
     gap: 10px;
@@ -78,13 +76,12 @@ body {
     box-shadow: 0 4px 10px rgba(0, 123, 181, 0.3);
 }
 
-/* --- QUESTION STEPS --- */
 .question-step {
-    display: none; /* Hidden by default */
+    display: none;
     animation: fadeIn 0.4s ease-out;
 }
 .question-step.active {
-    display: block; /* Show only active */
+    display: block;
 }
 
 @keyframes fadeIn {
@@ -120,7 +117,6 @@ input[type="text"]:focus {
 
 /* --- MILLIONAIRE BUTTONS  --- */
 .btn-millionaire {
-    /* Light Blue Gradient */
     background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
     border: 2px solid #81d4fa;
     color: var(--primary-blue);
@@ -143,9 +139,7 @@ input[type="text"]:focus {
     border-color: var(--primary-blue);
 }
 
-/* Selected State (Dark Blue) */
 .btn-millionaire.selected {
-    /* Deep Blue Gradient */
     background: linear-gradient(135deg, #0288d1 0%, #01579b 100%);
     border-color: #01579b;
     color: white;
@@ -154,7 +148,7 @@ input[type="text"]:focus {
 }
 
 .btn-millionaire.selected .letter-badge {
-    color: #81d4fa; /* Light blue badge on dark background */
+    color: #81d4fa;
 }
 
 .letter-badge {
@@ -175,14 +169,12 @@ input[type="text"]:focus {
     align-items: center;
 }
 
-/* Grayed out (Neutral) */
 .review-option.neutral {
     background-color: #f8f9fa;
     color: #999;
     opacity: 0.7;
 }
 
-/* Correct Answer (Green) */
 .review-option.correct-answer {
     background-color: #ffebee;
     border-color: #198754;
@@ -190,7 +182,6 @@ input[type="text"]:focus {
     font-weight: 700;
 }
 
-/* Wrong Choice (Red) */
 .review-option.wrong-choice {
     background-color: #ffebee;
     border-color: #e57373;
